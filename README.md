@@ -14,6 +14,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-23%20at%209.30.48%20pm.png)
 
 3. Give a name to the new environment. In this demo, we can name it as "demo-env". 
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-23%20at%209.32.55%20pm.png)
 
 4. Accept other default settings ()
 
