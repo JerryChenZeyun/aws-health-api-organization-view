@@ -7,7 +7,8 @@ This lab aims to show users how easy it is to call AWS health API at organizatio
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-23%20at%209.02.34%20pm.png)
 
 # Setup
-1. Goto to AWS Console
+1. Goto to AWS Console, select Cloud9 service (In N.Virginia Region -- "us-east-1")
+https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 
 
