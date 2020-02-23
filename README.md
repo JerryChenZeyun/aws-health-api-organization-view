@@ -21,7 +21,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 5. Once the Cloud9 environment has been provisioned, use the following command to update the boto3 library -- as the current default library version (1.10.41) doesn't support the latest AWS health API for Organization.
 
-`python -m pip install boto3 -t ./`
+    `python -m pip install boto3 -t ./`
 
 
 
