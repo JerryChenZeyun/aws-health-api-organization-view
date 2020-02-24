@@ -30,5 +30,6 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 7. Now the environment has almost ready. So please use the following command to download the project to Cloud9, and copy the "health_org_demo.py" date to the environment folder.
 
     `git clone https://github.com/JerryChenZeyun/aws-health-api-organization-view.git`
+    
     `cp /home/ec2-user/environment/aws-health-api-organization-view/health_org_demo.py /home/ec2-user/environment/health_org_demo.py`
 
