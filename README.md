@@ -24,6 +24,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     `python -m pip install boto3 -t ./`
 
 6. As we need to use python pandas module to translate the json data into csv file, please use the following command to install pandas module
+
     `python -m pip install pandas --user`
     
 7. 
