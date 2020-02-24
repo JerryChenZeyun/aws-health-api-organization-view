@@ -46,6 +46,11 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-24%20at%208.38.54%20pm.png)
 
+    For those who interested in digging out the api call functions, you may take a quick look at the python code.
+
+9. Execute the code
+
+
 
 
 
