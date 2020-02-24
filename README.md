@@ -42,7 +42,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     https://s3.console.aws.amazon.com/s3/home
 
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-24%20at%208.37.09%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-24%20at%208.38.54%20pm.png)
 
 
 
