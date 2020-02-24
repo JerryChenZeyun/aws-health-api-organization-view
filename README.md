@@ -33,3 +33,17 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     
     `cp /home/ec2-user/environment/aws-health-api-organization-view/health_org_demo.py /home/ec2-user/environment/health_org_demo.py`
 
+8. Use the Cloud9 editor environment to change the following parameter value based on your Lab environment info:
+
+    1) accountId - change it to your 12 digit account id number. You can find your AWS account id via this link:
+    https://console.aws.amazon.com/billing/home?#/account
+    
+    2) bucketName - change it to your bucket name, which is used to host the data fetched by the health api. You can find your buckets via this link:
+    https://s3.console.aws.amazon.com/s3/home
+
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-24%20at%208.37.09%20pm.png)
+
+
+
+
