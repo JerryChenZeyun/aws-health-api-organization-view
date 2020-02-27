@@ -21,17 +21,17 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 5. Once the Cloud9 environment has been provisioned, use the following command to update the boto3 library -- as the current default library version (1.10.41) doesn't support the latest AWS health API for Organization.
 
-    `python -m pip install boto3 -t ./`
+    ec2-user:~/environment $ `python -m pip install boto3 -t ./`
 
 6. As we need to use python pandas module to translate the json data into csv file, please use the following command to install pandas module
 
-    `python -m pip install pandas --user`
+    ec2-user:~/environment $ `python -m pip install pandas --user`
     
 7. Now the environment has almost ready. So please use the following command to download the project to Cloud9, and copy the "health_org_demo.py" date to the environment folder.
 
-    `git clone https://github.com/JerryChenZeyun/aws-health-api-organization-view.git`
+    ec2-user:~/environment $ `git clone https://github.com/JerryChenZeyun/aws-health-api-organization-view.git`
     
-    `cp /home/ec2-user/environment/aws-health-api-organization-view/health_org_demo.py /home/ec2-user/environment/health_org_demo.py`
+    ec2-user:~/environment $ `cp /home/ec2-user/environment/aws-health-api-organization-view/health_org_demo.py /home/ec2-user/environment/health_org_demo.py`
 
 8. Use the Cloud9 editor environment to change the following parameter value based on your Lab environment info:
 
