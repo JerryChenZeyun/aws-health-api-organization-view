@@ -53,7 +53,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 9. Execute the python script -- Use the following command in Cloud9 to proceed:
 
-    `ec2-user:~/environment $ python health_org_demo.py`
+    ec2-user:~/environment $ `python health_org_demo.py`
 
 
 
