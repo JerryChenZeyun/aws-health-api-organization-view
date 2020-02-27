@@ -94,3 +94,8 @@ https://my-test-bucket-20191011.s3-ap-southeast-2.amazonaws.com/manifest.json
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%2010.04.52%20pm.png)
 
 
+# Clean Up Step
+
+
+
+
