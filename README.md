@@ -5,7 +5,7 @@ Showcase retrieving service health status via Cloud9 by calling health api at or
 # Introduction
 This lab aims to show users how easy it is to call AWS health API at organization level through Cloud9. The python code initially runs locally in the Cloud9 environment, where we will upload the health status data to S3 bucket, and then visualise the data using QuickSight. Optionally, user can consider to integrate email SNS to get notification upon the conditions setup by the operation team.
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-23%20at%209.02.34%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.02.34%20pm.png)
 
 
 # Setup
@@ -13,13 +13,13 @@ This lab aims to show users how easy it is to call AWS health API at organizatio
 https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 2. Create a new Cloud9 environment by Clicking the "Create Environment" button
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-23%20at%209.30.48%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.30.48%20pm.png)
 
 3. Give a name to the new environment. In this demo, we can name it as "demo-env". 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-23%20at%209.32.55%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.32.55%20pm.png)
 
 4. Accept other default settings, click "Next step", and then finalise the creation by clicking "Create environment".
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-23%20at%209.34.54%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.34.54%20pm.png)
 
 5. Once the Cloud9 environment has been provisioned, use the following command to update the boto3 library -- as the current default library version (1.10.41) doesn't support the latest AWS health API for Organization.
 
@@ -46,7 +46,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     Once the above 2 parameters have been updated, you can simply save the python file. 
     ("Command" + "S" for MAC, or "Control" + "S" for Windows)
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%208.24.34%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%208.24.34%20pm.png)
 
 
    For those who interested in digging out the api call functions, you may take a quick look at the python code.    
@@ -60,7 +60,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
    Once the code has been executed successfully, You can see the output from Cloud9, showing the health status info summary, and detail health info in json format. 
    
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%208.35.19%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%208.35.19%20pm.png)
 
 10. Analyze the health event data printed at the Cloud9 terminal. In the Cloud9 terminal, we will find the json format data retrieved from health api call at organization level. 
 
@@ -74,24 +74,24 @@ https://us-east-1.quicksight.aws.amazon.com/sn/start
 
 2. Choose "New analysis" at the top left corner of the QuickSight page
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.46.46%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%209.46.46%20pm.png)
 
 3. Choose "New data set" at the top left corner of the page
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.52.27%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%209.52.27%20pm.png)
 
 4. Select S3, then fill in Data source name (e.g. event_data_file), use the following link to specify the manifest file:
 https://my-test-bucket-20191011.s3-ap-southeast-2.amazonaws.com/manifest.json
 
    Then hit "Connect", and then click "Visualize" to proceed. 
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.58.07%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%209.58.07%20pm.png)
 
 5. Experience the dataset visualization -- at this step, user can simply select or drag/drop via QuickSight GUI to visualize the dataset based on specific need. the screenshots show visualize the whole dataset, and only the "region" data for the health events within the organization.
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%2010.04.33%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%2010.04.33%20pm.png)
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%2010.04.52%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%2010.04.52%20pm.png)
 
 
 # Clean Up Step
