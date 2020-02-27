@@ -80,5 +80,11 @@ https://us-east-1.quicksight.aws.amazon.com/sn/start
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.52.27%20pm.png)
 
+4. Select S3, then fill in Data source name (e.g. event_data_file), use the following link to specify the manifest file:
+https://my-test-bucket-20191011.s3-ap-southeast-2.amazonaws.com/manifest.json
+
+Then hit "Connect", and then click "Visualize" to proceed. 
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.58.07%20pm.png)
 
 
