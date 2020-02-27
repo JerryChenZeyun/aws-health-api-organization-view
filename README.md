@@ -56,6 +56,8 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     ec2-user:~/environment $ `python health_org_demo.py`
 
 
-
+   Once the code has been executed successfully, You can see the output from Cloud9, showing the health status info summary, and detail health info in json format. 
+   
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%208.35.19%20pm.png)
 
 
