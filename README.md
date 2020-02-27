@@ -1,10 +1,12 @@
 # Building Organization Service Health Check Solution with Cloud9 and QuickSight
 Showcase retrieving service health status via Cloud9 by calling health api at organization level, and visualise the health status data through QuickSight.
 
+
 # Introduction
 This lab aims to show users how easy it is to call AWS health API at organization level through Cloud9. The python code initially runs locally in the Cloud9 environment, where we will upload the health status data to S3 bucket, and then visualise the data using QuickSight. Optionally, user can consider to integrate email SNS to get notification upon the conditions setup by the operation team.
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-23%20at%209.02.34%20pm.png)
+
 
 # Setup
 1. Goto to AWS Console, select Cloud9 service (In N.Virginia Region -- "us-east-1"). Or simply click the following link:
@@ -68,3 +70,8 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 After the python script has been executed, the health status data would be stored in S3 bucket as csv file. We can utilise various tooling to visualise the dataset. In this Lab, we are going to use QuickSight.
 
 1. Go to the following QuickSight link to generate the view of the dataset
+https://us-east-1.quicksight.aws.amazon.com/sn/start
+
+2. Choose "New Analysis" at the top left corner of the QuickSight page
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.46.46%20pm.png)
