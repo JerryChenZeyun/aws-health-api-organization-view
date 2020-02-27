@@ -60,4 +60,11 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
    
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%208.35.19%20pm.png)
 
+10. Analyze the health event data printed at the Cloud9 terminal. In the Cloud9 terminal, we will find the json format data retrieved from health api call at organization level. 
 
+
+# Visualize the health event csv data through QuickSight
+
+After the python script has been executed, the health status data would be stored in S3 bucket as csv file. We can utilise various tooling to visualise the dataset. In this Lab, we are going to use QuickSight.
+
+1. Go to the following QuickSight link to generate the view of the dataset
