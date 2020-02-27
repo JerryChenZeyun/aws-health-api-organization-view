@@ -83,8 +83,14 @@ https://us-east-1.quicksight.aws.amazon.com/sn/start
 4. Select S3, then fill in Data source name (e.g. event_data_file), use the following link to specify the manifest file:
 https://my-test-bucket-20191011.s3-ap-southeast-2.amazonaws.com/manifest.json
 
-Then hit "Connect", and then click "Visualize" to proceed. 
+   Then hit "Connect", and then click "Visualize" to proceed. 
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.58.07%20pm.png)
+
+5. Experience the dataset visualization -- at this step, user can simply select or drag/drop via QuickSight GUI to visualize the dataset based on specific need. the screenshots show visualize the whole dataset, and only the "region" data for the health events within the organization.
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%2010.04.33%20pm.png)
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%2010.04.52%20pm.png)
 
 
