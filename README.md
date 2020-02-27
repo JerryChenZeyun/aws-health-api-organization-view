@@ -44,14 +44,16 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     Once the above 2 parameters have been updated, you can simply save the python file. 
     ("Command" + "S" for MAC, or "Control" + "S" for Windows)
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-24%20at%208.38.54%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%208.24.34%20pm.png)
 
 
    For those who interested in digging out the api call functions, you may take a quick look at the python code.    
 
 
 
-9. Execute the code
+9. Execute the python script -- Use the following command in Cloud9 to proceed:
+
+    ``
 
 
 
