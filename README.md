@@ -72,6 +72,13 @@ After the python script has been executed, the health status data would be store
 1. Go to the following QuickSight link to generate the view of the dataset
 https://us-east-1.quicksight.aws.amazon.com/sn/start
 
-2. Choose "New Analysis" at the top left corner of the QuickSight page
+2. Choose "New analysis" at the top left corner of the QuickSight page
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.46.46%20pm.png)
+
+3. Choose "New data set" at the top left corner of the page
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/Screen%20Shot%202020-02-27%20at%209.52.27%20pm.png)
+
+
+
