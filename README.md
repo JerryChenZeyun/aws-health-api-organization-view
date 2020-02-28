@@ -96,6 +96,8 @@ https://my-test-bucket-20191011.s3-ap-southeast-2.amazonaws.com/manifest.json
 
 # Clean Up Step
 
+Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE environment and select "Delete".
 
+'https://console.aws.amazon.com/cloud9/home?region=us-east-1'
 
 
