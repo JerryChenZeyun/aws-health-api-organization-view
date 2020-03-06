@@ -15,7 +15,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 2. Create a new Cloud9 environment by Clicking the "Create Environment" button
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.30.48%20pm.png)
 
-3. Give a name to the new environment. In this demo, we can name it as "demo-env". 
+3. Give a name to the new environment. In this demo, we can name it as "demo-env". Then click "Next step".
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.32.55%20pm.png)
 
 4. Accept other default settings, click "Next step", and then finalise the creation by clicking "Create environment".
