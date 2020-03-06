@@ -21,7 +21,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 4. Accept other default settings, click "Next step"
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.34.54%20pm.png)
 
-5. In the "Review" page, review the environment configurations, and click "Create environment" to finalise the Cloud9 environment creation process.
+5. In the "Review" page, review the environment configurations, and click "Create environment" to kickoff the creation process. It would take around 1 to 2 mins for the Cloud9 environment to be provisioned.
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-06%20at%204.02.42%20pm.png)
 
 6. Once the Cloud9 environment has been provisioned, use the following command to update the boto3 library -- as the current default library version (1.10.41) doesn't support the latest AWS health API for Organization.
