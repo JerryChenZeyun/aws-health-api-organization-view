@@ -18,24 +18,27 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 3. Give a name to the new environment. In this demo, we can name it as "demo-env". Then click "Next step".
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.32.55%20pm.png)
 
-4. Accept other default settings, click "Next step", and then finalise the creation by clicking "Create environment".
+4. Accept other default settings, click "Next step"
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.34.54%20pm.png)
 
-5. Once the Cloud9 environment has been provisioned, use the following command to update the boto3 library -- as the current default library version (1.10.41) doesn't support the latest AWS health API for Organization.
+5. In the "Review" page, review the environment configurations, and click "Create environment" to finalise the Cloud9 environment creation process.
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-06%20at%204.02.42%20pm.png)
+
+6. Once the Cloud9 environment has been provisioned, use the following command to update the boto3 library -- as the current default library version (1.10.41) doesn't support the latest AWS health API for Organization.
 
     ec2-user:~/environment $ `python -m pip install boto3 -t ./`
 
-6. As we need to use python pandas module to translate the json data into csv file, please use the following command to install pandas module
+7. As we need to use python pandas module to translate the json data into csv file, please use the following command to install pandas module
 
     ec2-user:~/environment $ `python -m pip install pandas --user`
     
-7. Now the environment has almost ready. So please use the following command to download the project to Cloud9, and copy the "health_org_demo.py" date to the environment folder.
+8. Now the environment has almost ready. So please use the following command to download the project to Cloud9, and copy the "health_org_demo.py" date to the environment folder.
 
     ec2-user:~/environment $ `git clone https://github.com/JerryChenZeyun/aws-health-api-organization-view.git`
     
     ec2-user:~/environment $ `cp /home/ec2-user/environment/aws-health-api-organization-view/health_org_demo.py /home/ec2-user/environment/health_org_demo.py`
 
-8. Use the Cloud9 editor environment to change the following parameter value based on your Lab environment info:
+9. Use the Cloud9 editor environment to change the following parameter value based on your Lab environment info:
 
     1) accountId - change it to your 12 digit account id number. You can find your AWS account id via this link:
     https://console.aws.amazon.com/billing/home?#/account
@@ -53,7 +56,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 
 
-9. Execute the python script -- Use the following command in Cloud9 to proceed:
+10. Execute the python script -- Use the following command in Cloud9 to proceed:
 
     ec2-user:~/environment $ `python health_org_demo.py`
 
@@ -62,7 +65,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
    
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%208.35.19%20pm.png)
 
-10. Analyze the health event data printed at the Cloud9 terminal. In the Cloud9 terminal, we will find the json format data retrieved from health api call at organization level. 
+11. Analyze the health event data printed at the Cloud9 terminal. In the Cloud9 terminal, we will find the json format data retrieved from health api call at organization level. 
 
 
 # Visualize the health event csv data through QuickSight
