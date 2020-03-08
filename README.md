@@ -163,7 +163,7 @@ For those AWS accounts that use QuickSight for the first time, users need to exp
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%204.56.48%20pm.png)
 
 3. Give an Account Name to QuickSight service. 
-   a. You might use "dev-lab" as shown in screenshot. 
+   <p>a. You might use "dev-lab" as shown in screenshot. <p/>
    b. Fill in an email address for the registration. For simplicity, you might use a fake email address "abc@gmail.com" to proceed.
    c. leave all other options as default settings, and click "Finish" to finalise the QuickSight sign up process.
 
