@@ -104,3 +104,14 @@ Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE 
 'https://console.aws.amazon.com/cloud9/home?region=us-east-1'
 
 
+# Appendix
+
+# Setting up QuickSight 
+
+For those AWS accounts that use QuickSight for the first time, users need to explicitely sign up for QuickSight. Please follow the following steps:
+
+1. Go to follow link to access AWS QuickSight service:
+
+'https://us-east-1.quicksight.aws.amazon.com/sn/start?#'
+
+
