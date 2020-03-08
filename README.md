@@ -37,8 +37,12 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     ec2-user:~/environment $ `git clone https://github.com/JerryChenZeyun/aws-health-api-organization-view.git`
     
     ec2-user:~/environment $ `cp /home/ec2-user/environment/aws-health-api-organization-view/health_org_demo.py /home/ec2-user/environment/health_org_demo.py`
+    
+9. Create the S3 bucket to host the event data fed back from the organization health api call. Lab user can go to S3 console (`https://s3.console.aws.amazon.com/s3/home?region=us-east-1`) to create a new bucket. Simply give the new bucket a name,  then accept all the default setting and keep on clicking "Next", and finally click "Create Bucket" to finalise S3 bucket creation. You may jot down the name which is needed in next step.
 
-9. Use the Cloud9 editor environment to change the following parameter value based on your Lab environment info:
+For those user need more info on creating the bucket, you may refer to the appendix session.
+
+10. Use the Cloud9 editor environment to change the following parameter value based on your Lab environment info:
 
     1) accountId - change it to your 12 digit account id number. You can find your AWS account id via this link:
     https://console.aws.amazon.com/billing/home?#/account
@@ -56,7 +60,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 
 
-10. Execute the python script -- Use the following command in Cloud9 to proceed:
+11. Execute the python script -- Use the following command in Cloud9 to proceed:
 
     ec2-user:~/environment $ `python health_org_demo.py`
 
@@ -65,7 +69,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
    
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%208.35.19%20pm.png)
 
-11. Analyze the health event data printed at the Cloud9 terminal. In the Cloud9 terminal, we will find the json format data retrieved from health api call at organization level. 
+12. Analyze the health event data printed at the Cloud9 terminal. In the Cloud9 terminal, we will find the json format data retrieved from health api call at organization level. 
 
 
 # Visualize the health event csv data through QuickSight
