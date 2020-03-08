@@ -40,7 +40,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     
 9. Create the S3 bucket to host the event data fed back from the organization health api call. Lab user can go to S3 console (`https://s3.console.aws.amazon.com/s3/home?region=us-east-1`) to create a new bucket. Simply give the new bucket a name,  then accept all the default setting and keep on clicking "Next", and finally click "Create Bucket" to finalise S3 bucket creation. You may jot down the name which is needed in next step.
 
-    For those user need more info on creating the bucket, you may refer to the [Create new S3 bucket](Create new S3 bucket) in appendix section.
+    For those user need more info on creating the bucket, you may refer to the [Create new S3 bucket](#-Create-new-S3-bucket) in appendix section.
 
 10. Use the Cloud9 editor environment to change the following parameter value based on your Lab environment info:
 
@@ -114,7 +114,7 @@ Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE 
 
 # Appendix
 
-# Create new S3 bucket 
+# Create new S3 bucket
 
 This section give you more detailed guidance on how to create the S3 bucket to host data fed back from Organization Health API Call. Please follow these steps to complete the bucket creation:
 
