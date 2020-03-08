@@ -112,6 +112,6 @@ For those AWS accounts that use QuickSight for the first time, users need to exp
 
 1. Go to follow link to access AWS QuickSight service:
 
-'https://us-east-1.quicksight.aws.amazon.com/sn/start?#'
+   'https://us-east-1.quicksight.aws.amazon.com/sn/start?'
 
 
