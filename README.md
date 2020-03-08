@@ -8,7 +8,7 @@ This lab is intended to showcase the Health API Organization View feature. Organ
 This lab aims to show users how easy it is to call AWS health API at organization level through Cloud9. The python code initially runs locally in the Cloud9 environment, where we will upload the health status data to S3 bucket, and then visualise the data using QuickSight. Optionally, user can consider to integrate email SNS to get notification upon the conditions setup by the operation team.
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-23%20at%209.02.34%20pm.png)
-
+<br />
 
 # Setup
 1. Goto to AWS Console, select Cloud9 service (In N.Virginia Region -- "us-east-1"). Or simply click the following link:
@@ -72,7 +72,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%208.35.19%20pm.png)
 
 12. Analyze the health event data printed at the Cloud9 terminal. In the Cloud9 terminal, we will find the json format data retrieved from health api call at organization level. 
-
+<br />
 
 # Visualize the health event csv data through QuickSight
 
@@ -101,7 +101,7 @@ https://my-test-bucket-20191011.s3-ap-southeast-2.amazonaws.com/manifest.json
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%2010.04.33%20pm.png)
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%2010.04.52%20pm.png)
-
+<br />
 
 # Clean Up Step
 
@@ -111,7 +111,7 @@ Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE 
 
 <br />
 <br />
-
+<br />
 
 
 
