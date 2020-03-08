@@ -116,4 +116,7 @@ For those AWS accounts that use QuickSight for the first time, users need to exp
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%204.48.39%20pm.png)
 
+2. In the QuickSight account selection page, please select "Standard" edition for this lab as shown below. Then click "Continue" at the bottom right corner.
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%204.56.48%20pm.png)
 
