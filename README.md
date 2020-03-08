@@ -104,6 +104,10 @@ Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE 
 'https://console.aws.amazon.com/cloud9/home?region=us-east-1'
 
 
+
+
+
+
 # Appendix
 
 # Setting up QuickSight 
