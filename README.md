@@ -116,6 +116,7 @@ Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE 
 
 
 # Appendix
+<br />
 
 # Create new S3 bucket
 
@@ -126,6 +127,24 @@ This section give you more detailed guidance on how to create the S3 bucket to h
     
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.02.24%20pm.png)
 
+2. Give the new bucket a name, which cannot duplicate with other S3 bucket that have been existed. In this example, the new bucket is named as "my-health-api-lab-202003082100". Then click "Next"
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.13.36%20pm.png)
+
+3. Accept the default config in this page, and click "Next"
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.15.56%20pm.png)
+
+4. Continue to accept the default config in this page, and click "Next"
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.16.11%20pm.png)
+
+5. Click the "Create bucket" in this page to finalise the new bucket creation.
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.16.36%20pm.png)
+
+
+<br />
 
 # Setting up QuickSight 
 
