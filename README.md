@@ -110,8 +110,10 @@ Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE 
 
 For those AWS accounts that use QuickSight for the first time, users need to explicitely sign up for QuickSight. Please follow the following steps:
 
-1. Go to follow link to access AWS QuickSight service:
+1. Go to follow link to access AWS QuickSight service, then click "Sign up for QuickSight".
 
    'https://us-east-1.quicksight.aws.amazon.com/sn/start?'
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%204.48.39%20pm.png)
 
 
