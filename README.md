@@ -2,7 +2,7 @@
 This lab is intended to showcase the Health API Organization View feature. Organization View is intended to aggregate Personal Health Dashboard/Health events at the PAYER account level within an organization. Thus it requires an Organization hierarchy, including linked accounts. Furthermore, for the data required to be aggregated at the PAYER account level, it needs to be enabled prior to the Personal Health Dashboard notification being created.
 
 <br />
-<br />
+
 
 # Introduction
 This lab aims to show users how easy it is to call AWS health API at organization level through Cloud9. The python code initially runs locally in the Cloud9 environment, where we will upload the health status data to S3 bucket, and then visualise the data using QuickSight. Optionally, user can consider to integrate email SNS to get notification upon the conditions setup by the operation team.
