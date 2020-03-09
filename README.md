@@ -91,14 +91,17 @@ https://us-east-1.quicksight.aws.amazon.com/sn/start
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%209.52.27%20pm.png)
 
-4. Select S3, then fill in Data source name (e.g. event_data_file), use the following link to specify the manifest file:
-https://my-test-bucket-20191011.s3-ap-southeast-2.amazonaws.com/manifest.json
+4. Up till now, there's a "manifests3.json" file that has been stored in the S3 bucket you created for this Lab. Please jot down the URL for this json file. You can use this link (https://s3.console.aws.amazon.com/s3/object/) to go to your S3 and click on your bucket, and then click on "manifests3.json" file to copy its URL. The screenshot is for reference.
+
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-09%20at%209.20.09%20pm.png)
+
+5. Select S3, then fill in "Data source name" (e.g. event_data_file). Then choose the "URL" radio button. Then paste the URL you copied from last step in the URL blank.
 
    Then hit "Connect", and then click "Visualize" to proceed. 
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%209.58.07%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-09%20at%209.22.56%20pm.png)
 
-5. Experience the dataset visualization -- at this step, user can simply select or drag/drop via QuickSight GUI to visualize the dataset based on specific need. the screenshots show visualize the whole dataset, and only the "region" data for the health events within the organization.
+6. Experience the dataset visualization -- at this step, user can simply select or drag/drop via QuickSight GUI to visualize the dataset based on specific need. the screenshots show visualize the whole dataset, and only the "region" data for the health events within the organization.
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%2010.04.33%20pm.png)
 
