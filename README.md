@@ -108,6 +108,12 @@ https://us-east-1.quicksight.aws.amazon.com/sn/start
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%2010.04.52%20pm.png)
 <br />
 
+Congratulations! Till this step, you've accomplished this Lab. 
+Please proceed to next step to clean up the resource.
+<br />
+<br />
+<br />
+
 # Clean Up Step
 
 Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE environment and select "Delete".
