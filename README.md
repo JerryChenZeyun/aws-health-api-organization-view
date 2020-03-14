@@ -51,7 +51,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     "bucketName" - change it to your bucket name, which is used to host the data fetched by the health api. You can find your buckets via this link:
     https://s3.console.aws.amazon.com/s3/home
 
-    Once the above 2 parameters have been updated, you can simply save the python file. 
+    Once the "bucketName" has been updated, you can simply save the python file. 
     ("Command" + "S" for MAC, or "Control" + "S" for Windows)
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-14%20at%204.29.45%20pm.png)
