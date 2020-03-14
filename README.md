@@ -34,11 +34,13 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
     ec2-user:~/environment $ `python -m pip install pandas --user`
     
-8. Now the environment has almost ready. So please use the following command to download the project to Cloud9, and copy the "health_org_demo.py" date to the environment folder.
+8. Now the environment has almost ready. So please use the following command to download the project to Cloud9, and copy the "health_org_demo.py" and "manifest.json" files to the environment folder.
 
     ec2-user:~/environment $ `git clone https://github.com/JerryChenZeyun/aws-health-api-organization-view.git`
     
     ec2-user:~/environment $ `cp /home/ec2-user/environment/aws-health-api-organization-view/health_org_demo.py /home/ec2-user/environment/health_org_demo.py`
+    
+    ec2-user:~/environment $ `cp /home/ec2-user/environment/aws-health-api-organization-view/manifest.json /home/ec2-user/environment/manifest.json`
     
 9. Create the S3 bucket to host the event data fed back from the organization health api call. Lab user can go to S3 console (`https://s3.console.aws.amazon.com/s3/home?region=us-east-1`) to create a new bucket. Simply give the new bucket a name,  then accept all the default setting and keep on clicking "Next", and finally click "Create Bucket" to finalise S3 bucket creation. You may jot down the name which is needed in next step.
 
