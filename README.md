@@ -54,7 +54,7 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     Once the "bucketName" has been updated, you can simply save the python file. 
     ("Command" + "S" for MAC, or "Control" + "S" for Windows)
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-14%20at%204.29.45%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-14%20at%204.37.33%20pm.png)
 
 
    For those who interested in digging out the api call functions, you may take a quick look at the python code.    
