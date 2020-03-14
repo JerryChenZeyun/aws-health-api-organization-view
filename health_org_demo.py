@@ -208,8 +208,6 @@ def describe_affected_entities(event_arn):
 # -------------------
 if __name__ == "__main__":  
 
-    client = boto3.client('health')
-
     ## Enable the health service in organization level
     enable_health_org()
 
