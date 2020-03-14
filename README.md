@@ -46,18 +46,15 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
     For those user need more guidance on creating the new bucket, you may refer to the [Create new S3 bucket](#create-new-s3-bucket) in appendix section.
 
-10. Use the Cloud9 editor environment to change the following parameter value based on your Lab environment info:
-
-    1) accountId - change it to your 12 digit account id number. You can find your AWS account id via this link:
-    https://console.aws.amazon.com/billing/home?#/account
-    
-    2) bucketName - change it to your bucket name, which is used to host the data fetched by the health api. You can find your buckets via this link:
+10. Use the Cloud9 editor environment to change the S3 bucket name in the "health_org_demo.py" file:
+  
+    "bucketName" - change it to your bucket name, which is used to host the data fetched by the health api. You can find your buckets via this link:
     https://s3.console.aws.amazon.com/s3/home
 
     Once the above 2 parameters have been updated, you can simply save the python file. 
     ("Command" + "S" for MAC, or "Control" + "S" for Windows)
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%208.24.34%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-14%20at%204.29.45%20pm.png)
 
 
    For those who interested in digging out the api call functions, you may take a quick look at the python code.    
