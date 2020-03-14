@@ -67,11 +67,13 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
     ec2-user:~/environment $ `python health_org_demo.py`
 
 
-   Once the code has been executed successfully, You can see the output from Cloud9, showing the health status info summary, and detail health info in json format. 
+    Once the code has been executed successfully, You can see the output from Cloud9, showing the health status info summary, and detail health info in json format. 
    
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%208.35.19%20pm.png)
 
 12. Analyze the health event data printed at the Cloud9 terminal. In the Cloud9 terminal, we will find the json format data retrieved from health api call at organization level. 
+
+    Caveat: If the response for the script execution shows that there's no affected accounts/event details/entities, it's because the Lab account doesn't have any resource impacted by those service events. While Lab users should still be able to get the general service events data, including event arn, impacting regions, etc.
 <br />
 
 # Visualize the health event csv data through QuickSight
