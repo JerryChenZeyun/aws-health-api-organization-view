@@ -64,7 +64,7 @@ def upload_to_s3(file_name, bucket, key):
     s3 = boto3.resource('s3')        
     try:
         s3.meta.client.upload_file(file_name, bucket, key)
-        print("s3 upload success")
+        print("s3 upload success -- uploaded " + file_name + " to the bucket: " + bucket)
     except ClientError as e:
         logging.error(e)
         return False
