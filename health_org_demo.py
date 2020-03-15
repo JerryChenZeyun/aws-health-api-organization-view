@@ -4,20 +4,18 @@
 # Time: 2020.03.08
 # Version: 1.0
 # Execution requirements: 
-#   1. Update the "accountId" value following the instruction from Step 10 in  https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/README.md#setup
-#   2. Update the "bucketName" value following the instruction from Step 10 in  https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/README.md#setup
+#   Update the "bucketName" value following the instruction from Step 10 in  https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/README.md#setup
 ####################################################################################################################################################################################
 
-import boto3
 import logging
-from botocore.exceptions import ClientError
-import json
 import datetime
-import pandas as pd
+import boto3
+from botocore.exceptions import ClientError
 import os
+import pandas as pd
 
 ####################################################################################################################################################################################
-bucketName = 'my-test-bucket-20191011'
+bucketName = 'YOUR-S3-BUCKET-NAME-HERE'
 ####################################################################################################################################################################################
 
 arn_list = []
@@ -37,7 +35,7 @@ def dict_to_list():
         filter={
         }
     )
-    for i in range(0,len(event_data["events"])):
+    for i in range(0, len(event_data["events"])):
         arn_list.append(event_data["events"][i]["arn"])
         service_list.append(event_data["events"][i]["service"])
         eventTypeCode_list.append(event_data["events"][i]["eventTypeCode"])
@@ -89,7 +87,7 @@ def write_to_csv():
         }
     )
     event_data_file = open(csvFileName, "w")
-    event_data_file.write(whole_table.to_csv(index = False))
+    event_data_file.write(whole_table.to_csv(index=False))
     event_data_file.close()
     print("\n#########################################################################\n")
     print("Event data saved to CSV file.")
@@ -159,7 +157,7 @@ def describe_affected_accounts():
         event_arn_list.append(response["events"][i]["arn"])
         print("\n---------------------------------------------------------------------\n")
         print("affected accounts for health event: " + event_arn_list[i])
-        response_account = client.describe_affected_accounts_for_organization(eventArn = event_arn_list[i])
+        response_account = client.describe_affected_accounts_for_organization(eventArn=event_arn_list[i])
         print(response_account)
     print("\n#########################################################################\n")
 
@@ -227,9 +225,9 @@ if __name__ == "__main__":
     write_to_csv()
 
     ## upload the csv file to S3 bucket
-    upload_to_s3(file_name = csvFileName, bucket = bucketName, key = csvFileName)
+    upload_to_s3(file_name=csvFileName, bucket=bucketName, key=csvFileName)
 
     ## create manifest file, and save it to S3 bucket
     create_manifest()
-    upload_to_s3(file_name = "manifests3.json", bucket = bucketName, key = "manifests3.json")
+    upload_to_s3(file_name="manifests3.json", bucket=bucketName, key="manifests3.json")
 
