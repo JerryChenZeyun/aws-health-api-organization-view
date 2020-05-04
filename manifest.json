@@ -3,7 +3,7 @@
         {
             "URIs": [
 				
-				"https://s3.amazonaws.com/bucket-name/event_data_file.csv"
+				"https://bucket-name.s3.amazonaws.com/event_data_file.csv"
 
 				]
         },
