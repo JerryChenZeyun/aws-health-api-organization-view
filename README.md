@@ -1,6 +1,6 @@
 # This lab is provided as part of AWS Summit Online
   ℹ️  You will run this lab in your own AWS account. Please follow directions at the end of the lab to remove resources to avoid future costs.<br />
-  ℹ️  Make sure your AWS account has "Business" or "Enterprise" support plan, so as to be able to consume Health API at Organization level.
+  ℹ️  Make sure your AWS account has "Business" or "Enterprise" support plan, so as to be able to consume Health API at Organization level.<br /><br />
 
 
 
