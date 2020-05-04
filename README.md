@@ -1,5 +1,7 @@
 # This lab is provided as part of AWS Summit Online
   ℹ️  You will run this lab in your own AWS account. Please follow directions at the end of the lab to remove resources to avoid future costs.
+  ℹ️  Make sure your AWS account has "Business" or "Enterprise" support plan, so as to be able to consume Health API at Organization level.
+
 
 
 # Building Organization Service Health Check Solution with Cloud9 and QuickSight
