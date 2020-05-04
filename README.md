@@ -123,9 +123,11 @@ Please proceed to next step to clean up the resource.
 
 # Clean Up Step
 
-Goto to Cloud9 dashboard in AWS Console via the following link. Select your IDE environment and select "Delete".
-
+1. Go to Cloud9 dashboard in AWS Console via the following link. Select your IDE environment and select "Delete".
 'https://console.aws.amazon.com/cloud9/home?region=us-east-1'
+
+2. Go to the follow link to delete the S3 bucket that you created for this lab use:
+'https://s3.console.aws.amazon.com/s3/home?region=us-east-1'
 
 <br />
 <br />
