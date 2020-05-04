@@ -1,7 +1,7 @@
 ####################################################################################################################################################################################
 # Script Function: Demonstrate AWS Health API for Organization View
 # Author: JC
-# Time: 2020.03.08
+# Time: 2020.05.04
 # Version: 1.0
 # Execution requirements: 
 #   Update the "bucketName" value following the instruction from Step 10 in  https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/README.md#setup
@@ -42,9 +42,12 @@ def dict_to_list():
         eventTypeCategory_list.append(event_data["events"][i]["eventTypeCategory"])
         region_list.append(event_data["events"][i]["region"])
         startTime_list.append(event_data["events"][i]["startTime"])
-        endTime_list.append(event_data["events"][i]["endTime"])
         lastUpdatedTime_list.append(event_data["events"][i]["lastUpdatedTime"])
         statusCode_list.append(event_data["events"][i]["statusCode"])
+        if (event_data["events"][i]["statusCode"] == "open"):
+            endTime_list.append("NULL")
+        elif (event_data["events"][i]["statusCode"] == "closed"):
+            endTime_list.append(event_data["events"][i]["endTime"])
 
 ## Wraping up the dict info into json message 
 def myconverter(o):
