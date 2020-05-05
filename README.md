@@ -103,8 +103,12 @@ b) Select "Security & permissions" on the left, then click the "Add or remove" b
 c) Click the "Details" link under "Amazon S3", then click the "Select S3 buckets" button
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200505-214220.png)
 
-d) Check the box left to the bucket that you created for this lab in previous step, then click "Finish". Once this done, QuickSight will have access right to this bucket to visualise the data. 
+d) Check the box left to the bucket that you created for this lab in previous step, then click "Finish". 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200505-214553.png)
+
+e) Click the "Update" button. Once this done, QuickSight will have access right to this bucket to visualise the data. 
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200505-220505.png)
+
 
 3. Choose "New analysis" at the top left corner of the QuickSight page
 
