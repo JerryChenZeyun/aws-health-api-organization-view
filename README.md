@@ -110,7 +110,7 @@ e) Click the "Update" button. Once this done, QuickSight will have access right 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200505-220505.png)
 
 
-3. Choose "New analysis" at the top left corner of the QuickSight page
+3. Go back to the QuickSight front page (https://us-east-1.quicksight.aws.amazon.com/sn/start) and choose "New analysis" at the top left corner of the QuickSight page
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%209.46.46%20pm.png)
 
