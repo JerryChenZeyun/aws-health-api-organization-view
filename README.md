@@ -100,25 +100,31 @@ a) Click the user icon on the top right corner of QuickSight page, then select "
 b) Select "Security & permissions" on the left, then click the "Add or remove" button under "QuickSight access to AWS services"
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200505-213724%402x.png)
 
-2. Choose "New analysis" at the top left corner of the QuickSight page
+c) Click the "Details" link under "Amazon S3", then click the "Select S3 buckets" button
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200505-214220.png)
+
+d) Check the box left to the bucket that you created for this lab in previous step, then click "Finish". Once this done, QuickSight will have access right to this bucket to visualise the data. 
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200505-214553.png)
+
+3. Choose "New analysis" at the top left corner of the QuickSight page
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%209.46.46%20pm.png)
 
-3. Choose "New data set" at the top left corner of the page
+4. Choose "New data set" at the top left corner of the page
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%209.52.27%20pm.png)
 
-4. Up till now, there's a "manifests3.json" file that has been stored in the S3 bucket you created for this Lab. Please jot down the URL for this json file. You can use this link (https://s3.console.aws.amazon.com/s3/object/) to go to your S3 and click on your bucket, and then click on "manifests3.json" file to copy its URL. The screenshot is for reference.
+5. Up till now, there's a "manifests3.json" file that has been stored in the S3 bucket you created for this Lab. Please jot down the URL for this json file. You can use this link (https://s3.console.aws.amazon.com/s3/object/) to go to your S3 and click on your bucket, and then click on "manifests3.json" file to copy its URL. The screenshot is for reference.
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-09%20at%209.20.09%20pm.png)
 
-5. Select S3, then fill in "Data source name" (e.g. event_data_file). Then choose the "URL" radio button. Then paste the URL you copied from last step in the URL blank.
+6. Select S3, then fill in "Data source name" (e.g. event_data_file). Then choose the "URL" radio button. Then paste the URL you copied from last step in the URL blank.
 
    Then hit "Connect", and then click "Visualize" to proceed. 
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-09%20at%209.22.56%20pm.png)
 
-6. Experience the dataset visualization -- at this step, user can simply select or drag/drop via QuickSight GUI to visualize the dataset based on specific need. the screenshots show visualize the whole dataset, and only the "region" data for the health events within the organization.
+7. Experience the dataset visualization -- at this step, user can simply select or drag/drop via QuickSight GUI to visualize the dataset based on specific need. the screenshots show visualize the whole dataset, and only the "region" data for the health events within the organization.
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-02-27%20at%2010.04.33%20pm.png)
 
