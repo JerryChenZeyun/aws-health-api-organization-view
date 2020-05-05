@@ -91,6 +91,14 @@ After the python script has been executed, the health status data would be store
 https://us-east-1.quicksight.aws.amazon.com/sn/start
 
    As a first time QuickSight user, you might need to sign up for QuickSight service. Please refer to [Setting up QuickSight](#setting-up-quicksight) in appendix section for the sign up process.
+   
+2. Enable QuickSight to be able to access the data file stored in S3 bucket you created
+
+a) Click the user icon on the top right corner of QuickSight page, then select "Manage QuickSight".
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-05-05%20at%209.33.32%20pm.png)
+
+b) Select "Security & permissions" on the left, then click the "Add or remove" button under "QuickSight access to AWS services"
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200505-213724%402x.png)
 
 2. Choose "New analysis" at the top left corner of the QuickSight page
 
