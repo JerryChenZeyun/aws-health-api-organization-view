@@ -157,7 +157,7 @@ Please proceed to next step to clean up the resource.
 2. Go to the follow link to delete the S3 bucket that you created for this lab use:
 'https://s3.console.aws.amazon.com/s3/home?region=us-east-1'
 
-3. Canceling Your Amazon QuickSight Subscription and Closing the Account -- Please refer to [Canceling Your Amazon QuickSight Subscription](# Canceling Your Amazon QuickSight Subscription) in appendix section.
+3. Canceling Your Amazon QuickSight Subscription and Closing the Account -- Please refer to [Canceling Your Amazon QuickSight Subscription](#Canceling-Your-Amazon-QuickSight-Subscription) in appendix section.
 
 
 <br />
