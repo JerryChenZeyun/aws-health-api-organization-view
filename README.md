@@ -220,4 +220,9 @@ For those AWS accounts that use QuickSight for the first time, users need to exp
 
 # Canceling Your Amazon QuickSight Subscription
 
+Here's the public guidance link: https://docs.aws.amazon.com/quicksight/latest/user/closing-account.html
 
+1. Goes to this URL https://us-east-1.quicksight.aws.amazon.com/sn/admin?#permissions
+2. Choose Unsubscribe.
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-05-08%20at%2010.00.57%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-05-08%20at%2010.01.05%20pm.png)
