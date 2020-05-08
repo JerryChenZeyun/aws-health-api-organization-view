@@ -176,24 +176,11 @@ This section give you more detailed guidance on how to create the S3 bucket to h
 1. Go to the following link to access AWS S3 service, then click "Create bucket".
     `https://s3.console.aws.amazon.com/s3/home?region=us-east-1`
     
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.02.24%20pm.png)
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-05-08%20at%2010.07.45%20pm.png)
 
-2. Give the new bucket a name, which cannot duplicate with other S3 bucket that have been existed. In this example, the new bucket is named as "my-health-api-lab-202003082100". Then click "Next"
+2. Give the new bucket a name, which cannot duplicate with other S3 bucket that have been existed. In this example, the new bucket is named as "my-health-api-lab-202003082100", and accept other default settings, Then click "Create bucket" to finish the creation process.
 
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.13.36%20pm.png)
-
-3. Accept the default config in this page, and click "Next"
-
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.15.56%20pm.png)
-
-4. Continue to accept the default config in this page, and click "Next"
-
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.16.11%20pm.png)
-
-5. Click the "Create bucket" in this page to finalise the new bucket creation.
-
-![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.16.36%20pm.png)
-
+![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-05-08%20at%2010.08.25%20pm.png)
 
 <br />
 
