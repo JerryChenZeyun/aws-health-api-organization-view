@@ -157,6 +157,9 @@ Please proceed to next step to clean up the resource.
 2. Go to the follow link to delete the S3 bucket that you created for this lab use:
 'https://s3.console.aws.amazon.com/s3/home?region=us-east-1'
 
+3. Canceling Your Amazon QuickSight Subscription and Closing the Account -- Please refer to [Canceling Your Amazon QuickSight Subscription](# Canceling Your Amazon QuickSight Subscription) in appendix section.
+
+
 <br />
 <br />
 <br />
@@ -214,4 +217,7 @@ For those AWS accounts that use QuickSight for the first time, users need to exp
    <p>c. leave all other options as default settings, and click "Finish" to finalise the QuickSight sign up process.<p/>
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-08%20at%209.49.24%20pm.png)
+
+# Canceling Your Amazon QuickSight Subscription
+
 
