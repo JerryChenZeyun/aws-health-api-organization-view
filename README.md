@@ -20,8 +20,9 @@ This lab aims to show users how easy it is to call AWS health API at organizatio
 <br /><br />
 
 # How much will this lab cost?
-Base costs will be ( $USD in us-east-1):
-
+Base costs will be ( $USD in us-east-1): 
+- t2.micro Cloud9 instances $0.0116 per Hour
+- S3 used by Cloud9 python script to store event data/manifest files with size less than 5KB
 
 
 # Setup
