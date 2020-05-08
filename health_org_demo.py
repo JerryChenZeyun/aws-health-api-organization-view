@@ -1,7 +1,7 @@
 ####################################################################################################################################################################################
 # Script Function: Demonstrate AWS Health API for Organization View
 # Author: JC
-# Time: 2020.05.04
+# Time: 2020.05.08
 # Version: 1.0
 # Execution requirements: 
 #   Update the "bucketName" value following the instruction from Step 10 in  https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/README.md#setup
@@ -27,6 +27,7 @@ startTime_list = []
 endTime_list = []
 lastUpdatedTime_list = []
 statusCode_list = []
+impactedAccount_List = []
 
 # Transform dict format into list format
 def dict_to_list():
@@ -86,7 +87,8 @@ def write_to_csv():
             'startTime': startTime_list,
             'endTime': endTime_list,
             'lastUpdatedTime': lastUpdatedTime_list,
-            'statusCode': statusCode_list
+            'statusCode': statusCode_list,
+            'impactedAccount': impactedAccount_List
         }
     )
     event_data_file = open(csvFileName, "w")
@@ -162,10 +164,15 @@ def describe_affected_accounts():
         print("affected accounts for health event: " + event_arn_list[i])
         response_account = client.describe_affected_accounts_for_organization(eventArn=event_arn_list[i])
         print(response_account)
+        
+        if (response_account["affectedAccounts"] == "[]"):
+            impactedAccount_List.append("[]")
+        elif (response_account["affectedAccounts"] != "[]"):
+            impactedAccount_List.append(response_account["affectedAccounts"])
     print("\n#########################################################################\n")
 
+
 ## Retrieve account id automatically
-## NOT in use for this Lab
 def get_account_id():
     return(boto3.client('sts').get_caller_identity().get('Account'))
 
