@@ -1,10 +1,11 @@
-# This lab is provided as part of AWS Summit Online
+# Building Organization Service Health Check Solution with Cloud9 and QuickSight
+
+This lab is provided as part of [AWS Summit Online](https://aws.amazon.com/events/summits/online/)
   ℹ️  You will run this lab in your own AWS account. Please follow directions at the end of the lab to remove resources to avoid future costs.<br />
   ℹ️  Make sure your AWS account has "Business" or "Enterprise" support plan, so as to be able to consume Health API at Organization level.<br /><br />
 
 
 
-# Building Organization Service Health Check Solution with Cloud9 and QuickSight
 This lab is intended to showcase the Health API Organization View feature. Organization View is intended to aggregate Personal Health Dashboard/Health events at the PAYER account level within an organization. Thus it requires an Organization hierarchy, including linked accounts. Furthermore, for the data required to be aggregated at the PAYER account level, it needs to be enabled prior to the Personal Health Dashboard notification being created.
 
 At minimum, user can use their own AWS account with Business or Enterprise support and with single account under the AWS organization to run this lab. The lab content and process can be best referenced for user account with multiple linked accounts under the AWS organization.
