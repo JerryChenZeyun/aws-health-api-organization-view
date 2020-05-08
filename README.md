@@ -136,7 +136,7 @@ e) Click the "Update" button. Once this done, QuickSight will have access right 
 
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/Screen%20Shot%202020-03-09%20at%209.22.56%20pm.png)
 
-7. Up till this step, you should be able to upload the file to QuickSight. If you meet with SPICE related error message, please take the following actions:
+7. Up till this step, you should be able to upload the file to QuickSight. If you meet with SPICE related error message, please take the following actions:<br />
 a. Go to this link to increase the SPICE capacity in US east 1 region:https://us-east-1.quicksight.aws.amazon.com/sn/admin?#capacity.
 ![Image of Yaktocat](https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/media/WX20200508-221500.png)
 
