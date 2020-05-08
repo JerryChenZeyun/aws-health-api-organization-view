@@ -23,6 +23,7 @@ This lab aims to show users how easy it is to call AWS health API at organizatio
 Base costs will be ( $USD in us-east-1): 
 - t2.micro Cloud9 instances $0.0116 per Hour
 - S3 used by Cloud9 python script to store event data/manifest files with size less than 5KB
+- For QuickSight associated cost please refer to [Setting up QuickSight](#setting-up-quicksight) in appendix section
 
 
 # Setup
