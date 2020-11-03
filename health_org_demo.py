@@ -1,8 +1,8 @@
 ####################################################################################################################################################################################
 # Script Function: Demonstrate AWS Health API for Organization View
 # Author: JC
-# Time: 2020.05.08
-# Version: 1.0
+# Time: 2020.11.03
+# Version: 1.2
 # Execution requirements: 
 #   Update the "bucketName" value following the instruction from Step 10 in  https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/README.md#setup
 ####################################################################################################################################################################################
@@ -10,6 +10,7 @@
 import logging
 import datetime
 import boto3
+import json
 from botocore.exceptions import ClientError
 import os
 import pandas as pd
@@ -28,32 +29,16 @@ endTime_list = []
 lastUpdatedTime_list = []
 statusCode_list = []
 impactedAccount_List = []
+eventDescription_List = []
+impactedEntity_List = []
 
-# Transform dict format into list format
-def dict_to_list():
-    client = boto3.client('health')
-    event_data = client.describe_events_for_organization(
-        filter={
-        }
-    )
-    for i in range(0, len(event_data["events"])):
-        arn_list.append(event_data["events"][i]["arn"])
-        service_list.append(event_data["events"][i]["service"])
-        eventTypeCode_list.append(event_data["events"][i]["eventTypeCode"])
-        eventTypeCategory_list.append(event_data["events"][i]["eventTypeCategory"])
-        region_list.append(event_data["events"][i]["region"])
-        startTime_list.append(event_data["events"][i]["startTime"])
-        lastUpdatedTime_list.append(event_data["events"][i]["lastUpdatedTime"])
-        statusCode_list.append(event_data["events"][i]["statusCode"])
-        if (event_data["events"][i]["statusCode"] == "open"):
-            endTime_list.append("NULL")
-        elif (event_data["events"][i]["statusCode"] == "closed"):
-            endTime_list.append(event_data["events"][i]["endTime"])
-
-## Wraping up the dict info into json message 
-def myconverter(o):
-    if isinstance(o, datetime.datetime):
-        return o.__str__()
+# time encoder class
+class DatetimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        try:
+            return super(DatetimeEncoder, obj).default(obj)
+        except TypeError:
+            return str(obj)
 
 ## Upload the organization events json message to S3 file
 def upload_to_s3(file_name, bucket, key):
@@ -88,7 +73,9 @@ def write_to_csv():
             'endTime': endTime_list,
             'lastUpdatedTime': lastUpdatedTime_list,
             'statusCode': statusCode_list,
-            'impactedAccount': impactedAccount_List
+            'impactedAccount': impactedAccount_List,
+            'impactedEntity': impactedEntity_List,
+            'eventDescription': eventDescription_List
         }
     )
     event_data_file = open(csvFileName, "w")
@@ -138,78 +125,115 @@ def describe_health_service_status_for_org():
 ## describe_events_for_organization(**kwargs)
 def describe_events_for_org():
     client = boto3.client('health')
-    response_org_event = client.describe_events_for_organization(
-        filter={
-        }
-    )
+    event_paginator = client.get_paginator('describe_events_for_organization')
+    event_page_iterator = event_paginator.paginate()
+    
+    for event_page in event_page_iterator:
+        json_event = json.dumps(event_page, cls=DatetimeEncoder)
+        parsed_event = json.loads(json_event)
+        
+        events = parsed_event.get("events")
+        
+        for event in events:
+            arn_list.append(event.get("arn"))
+            service_list.append(event.get("service"))
+            eventTypeCode_list.append(event.get("eventTypeCode"))
+            eventTypeCategory_list.append(event.get("eventTypeCategory"))
+            region_list.append(event.get("region"))
+            startTime_list.append(event.get("startTime"))
+            lastUpdatedTime_list.append(event.get("lastUpdatedTime"))
+            statusCode_list.append(event.get("statusCode"))
+            if (event.get("statusCode") == "open"):
+                endTime_list.append("NULL")
+            elif (event.get("statusCode") == "closed"):
+                endTime_list.append(event.get("endTime"))
+
+            response = client.describe_event_details(eventArns = [event.get("arn")], locale = "en")
+            json_response = json.dumps(response, cls=DatetimeEncoder)
+            parsed_response = json.loads (json_response)
+            eventDescription_List.append(parsed_response["successfulSet"][0]["eventDescription"]["latestDescription"])
+
     print("\n#########################################################################\n")
-    print("describe_events_for_organization response is \n")
+    print("describe_events_for_organization response - Total events:", len(arn_list))
+    print("\n")
+    print("These events are related to the following services:\n", service_list)
     print("\n#########################################################################\n")
-    print(response_org_event)
+    return(True)
 
 ## describe_affected_accounts
-def describe_affected_accounts():
+def describe_affected_accounts(event_arn):
+    affectedAccounts = []
     client = boto3.client('health')
-    ## iterate the event list to retrieve affected account info for each health event
-    print("\n#########################################################################\n")
-    ## retrieve health event data
-    response = client.describe_events_for_organization(
-        filter={
-        }
-    )
-    event_arn_list = []
-    for i in range(0,len(response["events"])):
-        event_arn_list.append(response["events"][i]["arn"])
-        print("\n---------------------------------------------------------------------\n")
-        print("affected accounts for health event: " + event_arn_list[i])
-        response_account = client.describe_affected_accounts_for_organization(eventArn=event_arn_list[i])
-        print(response_account)
+    event_accounts_paginator = client.get_paginator('describe_affected_accounts_for_organization')
+    
+    event_accounts_page_iterator = event_accounts_paginator.paginate(eventArn=event_arn)
         
-        if (response_account["affectedAccounts"] == "[]"):
-            impactedAccount_List.append("[]")
-        elif (response_account["affectedAccounts"] != "[]"):
-            impactedAccount_List.append(response_account["affectedAccounts"])
-    print("\n#########################################################################\n")
-
+    for event_accounts_page in event_accounts_page_iterator:
+        json_event_accounts = json.dumps(event_accounts_page, cls=DatetimeEncoder)
+        parsed_event_accounts = json.loads (json_event_accounts)
+            
+        if((parsed_event_accounts['affectedAccounts']) == "[]"):
+            affectedAccounts = affectedAccounts +"[]"
+        else:
+            affectedAccounts = affectedAccounts + (parsed_event_accounts['affectedAccounts'])
+        print("For service event arn: {}".format(arn))
+        print("Affected accounts are: {}".format(affectedAccounts))
+    
+    return(affectedAccounts)
 
 ## Retrieve account id automatically
 def get_account_id():
     return(boto3.client('sts').get_caller_identity().get('Account'))
 
-## describe_events_details_for_organization(**kwargs) 
-## NOT in use for this Lab
-def describe_affected_event_details(event_arn):
-    client = boto3.client('health')
-    response = client.describe_event_details_for_organization(
-        organizationEventDetailFilters=[
-            {
-                'eventArn': event_arn,
-                'awsAccountId': accountId
-            },
-        ]
-    )
-    print("\n#########################################################################\n")
-    print("Destribe event details for specific account in organization \n")
-    print(response)
-    print("\n#########################################################################\n")
-
 ## describe_affected_entities_for_organization(**kwargs)
-## NOT in use for this Lab
 def describe_affected_entities(event_arn):
+    affectedEntities = []
+    affectedEntities_sub_list = []
     client = boto3.client('health')
-    response = client.describe_affected_entities_for_organization(
+    affected_accounts = describe_affected_accounts(event_arn)
+    
+    for affected_account in affected_accounts:
+        affected_account = ''.join(str(e) for e in affected_account)
+        
+        #If there's no affected account for this event, the 'affected account' will be filled by '[]'
+        if(not affected_account):
+            affected_account = '[]'
+        
+        print("affected_account: ", affected_account)
+        print("affected account type:", type(affected_account))
+        
+        event_entities_paginator = client.get_paginator('describe_affected_entities_for_organization')
+        event_entities_page_iterator = event_entities_paginator.paginate(
         organizationEntityFilters=[
-            {
-                'eventArn': event_arn,
-                'awsAccountId': accountId
-            },
-        ],
-    )
-    print("\n#########################################################################\n")
-    print("Destribe affected entities for specific account in organization \n")
-    print(response)
-    print("\n#########################################################################\n")
-
+            {    
+                'awsAccountId': affected_account,
+                'eventArn': event_arn
+            }
+            ]
+        )
+        
+        affectedEntities_sub_list = []
+        
+        for event_entities_page in event_entities_page_iterator:
+            json_event_entities = json.dumps(event_entities_page, cls=DatetimeEncoder)
+            parsed_event_entities = json.loads (json_event_entities)
+            print("for event {} and affected account {}: ".format(event_arn, affected_account))
+            print("event entities list are: {} \n".format(parsed_event_entities))
+                
+            for entity in parsed_event_entities['entities']:
+                
+                if((entity['entityValue']) != "[]"):
+                    affectedEntities_sub_list.append(entity['entityValue'])
+            
+            print("\n#########################################################################\n")
+            print("affected entities list are:", affectedEntities_sub_list)
+            print("\n#########################################################################\n")
+                
+        if(len(affectedEntities_sub_list) == 0):
+            affectedEntities = affectedEntities + "[]"
+        else:
+            affectedEntities = affectedEntities + affectedEntities_sub_list
+    return(affectedEntities)
 
 
 # Main part of Script
@@ -225,11 +249,18 @@ if __name__ == "__main__":
     ## describe_events_for_organization(**kwargs)
     describe_events_for_org()
 
-    ## describe_affected_accounts
-    describe_affected_accounts()
-
-    ## transfer dict data to list
-    dict_to_list()
+    ## describe_affected_accounts & describe_affected_entities
+    for arn in arn_list:
+        eventAffectedAccounts = describe_affected_accounts(arn)
+        print ("eventAffectedAccounts:",eventAffectedAccounts)
+        impactedAccount_List.append(eventAffectedAccounts)
+        
+        eventAffectedEntities = describe_affected_entities(arn)
+        print ("eventAffectedEntities:",eventAffectedEntities)
+        impactedEntity_List.append(eventAffectedEntities)
+    
+    print("complete impacted account list:", impactedAccount_List)    
+    print("complete impacted entity list:", impactedEntity_List)
     
     ## save event data to csv file
     write_to_csv()
