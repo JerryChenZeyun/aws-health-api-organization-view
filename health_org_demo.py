@@ -101,9 +101,7 @@ def create_manifest():
 
 ## Enable the health service in organization level
 def enable_health_org():
-    client = boto3.client('health', region_name='
-                          
-                          -1')
+    client = boto3.client('health', region_name='us-east-1')
     try:
         response = client.enable_health_service_access_for_organization()
         print("enable health api at organization level success")
