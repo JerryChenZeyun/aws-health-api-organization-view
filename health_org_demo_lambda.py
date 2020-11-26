@@ -39,6 +39,21 @@ impactedAccount_List = []
 eventDescription_List = []
 impactedEntity_List = []
 
+def enable_health_org():
+    client = boto3.client('health')
+    try:
+        response = client.enable_health_service_access_for_organization()
+        print("enable health api at organization level success")
+    except ClientError as e:
+        logging.error(e)
+        print("enable health api at organization level error occurs:", e)
+    
+    print("\n#########################################################################\n")
+    print(response)
+    print("\n#########################################################################\n")
+    print("Health Service has been enabled at AWS Organization Level -- Done!")
+    print("\n#########################################################################\n")
+
 # time encoder class
 class DatetimeEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -237,6 +252,9 @@ def lambda_handler(event, context):
     
     print("boto3 version is ---", boto3.__version__)
 
+    # Enable the health service in organization level
+    enable_health_org()
+
     ## describe_health_service_status_for_organization
     describe_health_service_status_for_org()
 
@@ -268,5 +286,5 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello from Lambda!')
+        'body': json.dumps('AWS Service Health Data has been polled and uploaded to the specified S3 bucket!')
     }
