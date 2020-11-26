@@ -40,7 +40,7 @@ eventDescription_List = []
 impactedEntity_List = []
 
 def enable_health_org():
-    client = boto3.client('health')
+    client = boto3.client('health', 'us-east-1')
     try:
         response = client.enable_health_service_access_for_organization()
         print("enable health api at organization level success")
@@ -117,14 +117,14 @@ def create_manifest():
 
 ## describe_health_service_status_for_organization
 def describe_health_service_status_for_org():
-    client = boto3.client('health')
+    client = boto3.client('health', 'us-east-1')
     response = client.describe_health_service_status_for_organization()
     print(response)
     print("\n#########################################################################\n")
 
 ## describe_events_for_organization(**kwargs)
 def describe_events_for_org():
-    client = boto3.client('health')
+    client = boto3.client('health', 'us-east-1')
     event_paginator = client.get_paginator('describe_events_for_organization')
     event_page_iterator = event_paginator.paginate()
     
@@ -163,7 +163,7 @@ def describe_events_for_org():
 ## describe_affected_accounts
 def describe_affected_accounts(event_arn):
     affectedAccounts = []
-    client = boto3.client('health')
+    client = boto3.client('health', 'us-east-1')
     event_accounts_paginator = client.get_paginator('describe_affected_accounts_for_organization')
     
     event_accounts_page_iterator = event_accounts_paginator.paginate(eventArn=event_arn)
@@ -189,7 +189,7 @@ def get_account_id():
 def describe_affected_entities(event_arn):
     affectedEntities = []
     affectedEntities_sub_list = []
-    client = boto3.client('health')
+    client = boto3.client('health', 'us-east-1')
     affected_accounts = describe_affected_accounts(event_arn)
     
     for affected_account in affected_accounts:
