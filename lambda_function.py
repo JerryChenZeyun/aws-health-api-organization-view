@@ -1,15 +1,15 @@
 ####################################################################################################################################################################################
 # Script Function: Demonstrate AWS Health API for Organization View
 # Author: JC
-# Time: 2020.11.25
-# Version: 1.3
+# Time: 2020.12.04
+# Version: 1.4
 # Execution requirements: 
 #   Update the "bucketName" value following the instruction from Step 10 in  https://github.com/JerryChenZeyun/aws-health-api-organization-view/blob/master/README.md#setup
 ####################################################################################################################################################################################
-
 import json
 import logging
-import datetime
+from datetime import datetime
+from dateutil import parser
 import boto3
 import json
 import csv
@@ -17,7 +17,7 @@ from itertools import zip_longest
 from botocore.exceptions import ClientError
 import os
 import urllib.request
-
+import fileinput
 
 ####################################################################################################################################################################################
 bucketName = os.environ.get('s3_bucket_name')
@@ -47,8 +47,6 @@ def enable_health_org():
     except ClientError as e:
         logging.error(e)
         print("enable health api at organization level error occurs:", e)
-    
-    print("\n#########################################################################\n")
     print(response)
     print("\n#########################################################################\n")
     print("Health Service has been enabled at AWS Organization Level -- Done!")
@@ -62,6 +60,52 @@ class DatetimeEncoder(json.JSONEncoder):
         except TypeError:
             return str(obj)
 
+## Check if the health data has been stored in the S3 bucket. So lambda will know if it needs to pull the whole set of health data
+def get_s3_file_status():
+    s3 = boto3.resource('s3')
+    try:
+        s3.Object(bucketName, csvFileName).load()
+    except ClientError as e:
+        if e.response['Error']['Code'] == "404":
+            # The object does not exist.
+            print ("data file doesn't exist.")
+            return (False)   
+    print ("data file does exist.")
+    return (True)
+
+# Combine the latest health data with historical data
+def data_merge(file1, file2, combined_file):
+    lambda_file1 = '/tmp/' + file1
+    lambda_file2 = '/tmp/' + file2
+    s3 = boto3.client("s3")
+    s3.download_file(bucketName, file1, lambda_file1)
+    s3.download_file(bucketName, file2, lambda_file2)
+    reader1 = csv.reader(open(lambda_file1))
+    reader2 = csv.reader(open(lambda_file2))
+    file_name = "/tmp/" + combined_file
+    f = open(file_name, "w")
+    writer = csv.writer(f)
+
+    for row in reader1:
+        writer.writerow(row)
+    for row in reader2:
+        writer.writerow(row)
+    f.close()
+
+    tempfile = "/tmp/tmp_" + combined_file
+    inFile = open(file_name,'r')
+    outFile = open(tempfile,'w')
+    listLines = []
+
+    for line in inFile:
+        if line in listLines:
+            continue
+        else:
+            outFile.write(line)
+            listLines.append(line)
+    outFile.close()
+    inFile.close()
+
 ## Upload the organization events json message to S3 file
 def upload_to_s3(file_name, bucket, key):
     """Upload a file to an S3 bucket
@@ -74,7 +118,7 @@ def upload_to_s3(file_name, bucket, key):
     s3 = boto3.resource('s3')
     try:
         s3.meta.client.upload_file(lambdaFileName, bucket, key)
-        print("s3 upload success -- uploaded " + file_name + " to the bucket: " + bucket)
+        print("s3 upload success -- uploaded " + key + " to the bucket: " + bucket)
     except ClientError as e:
         logging.error(e)
         return False
@@ -82,12 +126,12 @@ def upload_to_s3(file_name, bucket, key):
     return True
 
 # Store event data info into csv file
-def write_to_csv():
+def write_to_csv(file_name):
     whole_table = [arn_list, service_list, eventTypeCode_list, eventTypeCategory_list, region_list, startTime_list, 
     endTime_list, lastUpdatedTime_list, statusCode_list, impactedAccount_List, impactedEntity_List, eventDescription_List]
     export_data = zip_longest(*whole_table, fillvalue = '')
     
-    lambdaFileName = '/tmp/' + csvFileName
+    lambdaFileName = '/tmp/' + file_name
     with open(lambdaFileName, 'w', encoding="utf-8", newline='') as myfile:
         wr = csv.writer(myfile)
         wr.writerow(("arn", "service", "eventTypeCode", "eventTypeCategory", "region", "startTime", "endTime", "lastUpdatedTime", 
@@ -123,15 +167,19 @@ def describe_health_service_status_for_org():
     print("\n#########################################################################\n")
 
 ## describe_events_for_organization(**kwargs)
-def describe_events_for_org():
+def describe_events_for_org(start_time):
     client = boto3.client('health', 'us-east-1')
     event_paginator = client.get_paginator('describe_events_for_organization')
-    event_page_iterator = event_paginator.paginate()
-    
+    event_page_iterator = event_paginator.paginate(
+        filter={
+            'lastUpdatedTime':{
+                'from': start_time
+            }
+        }
+    )
     for event_page in event_page_iterator:
         json_event = json.dumps(event_page, cls=DatetimeEncoder)
         parsed_event = json.loads(json_event)
-        
         events = parsed_event.get("events")
         
         for event in events:
@@ -147,6 +195,8 @@ def describe_events_for_org():
                 endTime_list.append("NULL")
             elif (event.get("statusCode") == "closed"):
                 endTime_list.append(event.get("endTime"))
+            else:
+                endTime_list.append("NULL")
 
             response = client.describe_event_details(eventArns = [event.get("arn")], locale = "en")
             json_response = json.dumps(response, cls=DatetimeEncoder)
@@ -154,11 +204,37 @@ def describe_events_for_org():
             eventDescription_List.append(parsed_response["successfulSet"][0]["eventDescription"]["latestDescription"])
 
     print("\n#########################################################################\n")
-    print("describe_events_for_organization response - Total events:", len(arn_list))
-    print("\n")
+    print("describe_events_for_organization response - Total events:{}".format(len(arn_list)))
     print("These events are related to the following services:\n", service_list)
     print("\n#########################################################################\n")
     return(True)
+
+## read the latest event time
+def check_latest_event():
+    last_update_time = []
+    lambdaFileName = '/tmp/' + csvFileName
+    s3 = boto3.resource('s3')
+    obj = s3.Object(bucketName, csvFileName)
+    s3.Bucket(bucketName).download_file(csvFileName, lambdaFileName)
+    
+    with open(lambdaFileName, 'r') as file:
+        reader = csv.reader(file)
+        row1 = next(reader)
+        column = 0
+
+        for item in row1:
+            if (item == 'lastUpdatedTime'):
+                break
+            else:
+                column += 1
+        
+        for row in reader:
+            if (row[column] != "lastUpdatedTime"):
+                #date_time_obj = datetime.datetime.strptime(row[column], '%y-%m-%d %H:%M:%S.%f%z')
+                strUpdate = parser.parse(row[column])
+                last_update_time.append(strUpdate)
+        
+    return(max(last_update_time))
 
 ## describe_affected_accounts
 def describe_affected_accounts(event_arn):
@@ -252,37 +328,70 @@ def lambda_handler(event, context):
     
     print("boto3 version is ---", boto3.__version__)
 
-    # Enable the health service in organization level
-    enable_health_org()
-
-    ## describe_health_service_status_for_organization
-    describe_health_service_status_for_org()
-
-    ## describe_events_for_organization(**kwargs)
-    describe_events_for_org()
-
-    ## describe_affected_accounts & describe_affected_entities
-    for arn in arn_list:
-        eventAffectedAccounts = describe_affected_accounts(arn)
-        print ("eventAffectedAccounts:",eventAffectedAccounts)
-        impactedAccount_List.append(eventAffectedAccounts)
+    # If the data file not exist, then lambda pull out the whole health dataset. Otherwise, Lambda just pull the delta dataset.
+    if (not (get_s3_file_status())):
+        # Enable the health service in organization level
+        enable_health_org()
+        ## describe_health_service_status_for_organization
+        describe_health_service_status_for_org()
+        ## describe_events_for_organization(**kwargs)
+        describe_events_for_org(datetime(2015,1,1))
+        ## describe_affected_accounts & describe_affected_entities
+        for arn in arn_list:
+            eventAffectedAccounts = describe_affected_accounts(arn)
+            print ("eventAffectedAccounts:",eventAffectedAccounts)
+            impactedAccount_List.append(eventAffectedAccounts)
+            
+            eventAffectedEntities = describe_affected_entities(arn)
+            print ("eventAffectedEntities:",eventAffectedEntities)
+            impactedEntity_List.append(eventAffectedEntities)
         
-        eventAffectedEntities = describe_affected_entities(arn)
-        print ("eventAffectedEntities:",eventAffectedEntities)
-        impactedEntity_List.append(eventAffectedEntities)
-    
-    print("complete impacted account list:", impactedAccount_List)    
-    print("complete impacted entity list:", impactedEntity_List)
-    
-    ## save event data to csv file
-    write_to_csv()
+        print("complete impacted account list:", impactedAccount_List)    
+        print("complete impacted entity list:", impactedEntity_List)
+        
+        ## create manifest file, and save it to S3 bucket
+        create_manifest()
+        upload_to_s3(file_name="manifests3.json", bucket=bucketName, key="manifests3.json")
+        
+        ## save event data to csv file
+        write_to_csv(csvFileName)
 
-    ## upload the csv file to S3 bucket
-    upload_to_s3(file_name=csvFileName, bucket=bucketName, key=csvFileName)
+        ## upload the csv file to S3 bucket
+        upload_to_s3(file_name=csvFileName, bucket=bucketName, key=csvFileName)
+    
+    else:
+        latest_time = check_latest_event()
+        print("latest_time is: ", latest_time )
+        ## describe_events_for_organization(**kwargs)
+        describe_events_for_org(latest_time)
 
-    ## create manifest file, and save it to S3 bucket
-    create_manifest()
-    upload_to_s3(file_name="manifests3.json", bucket=bucketName, key="manifests3.json")
+        ## Check if there's updated event data
+        if (len(arn_list) >= 1): 
+            ## describe_affected_accounts & describe_affected_entities
+            for arn in arn_list:
+                eventAffectedAccounts = describe_affected_accounts(arn)
+                print ("eventAffectedAccounts:",eventAffectedAccounts)
+                impactedAccount_List.append(eventAffectedAccounts)
+                
+                eventAffectedEntities = describe_affected_entities(arn)
+                print ("eventAffectedEntities:",eventAffectedEntities)
+                impactedEntity_List.append(eventAffectedEntities)
+            
+            print("complete impacted account list:", impactedAccount_List)    
+            print("complete impacted entity list:", impactedEntity_List)
+
+            ## save event data to csv file
+            new_file = 'event_data_file_recent.csv'
+            write_to_csv(new_file)
+
+            ## upload the csv file to S3 bucket
+            upload_to_s3(file_name=new_file, bucket=bucketName, key=new_file)
+
+            ## merge the latest data with historical data into csvFileName
+            data_merge(new_file, csvFileName, 'combined_new_file.csv')
+
+            ## upload the csv file to S3 bucket
+            upload_to_s3(file_name='tmp_combined_new_file.csv', bucket=bucketName, key=csvFileName)
 
     return {
         'statusCode': 200,
