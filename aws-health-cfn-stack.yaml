@@ -1,0 +1,130 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Cloudformation Template to launch S3 bucket, IAM Lambda Role and
+  Health API polling Lambda.
+Parameters:
+  S3BucketNameforHealthData:
+    Description: Name of the new S3 Bucket to host AWS Health API data
+    AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
+    Type: String
+Resources:
+  AWSHealthApiDataHostingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Ref: S3BucketNameforHealthData
+  CopyZips:
+    Type: Custom::CopyZips
+    Properties:
+      ServiceToken: !GetAtt 'CopyZipsFunction.Arn'
+      DestBucket: !Ref 'AWSHealthApiDataHostingBucket'
+      SourceBucket: 'my-public-bucket-2020'
+      Prefix: ''
+      Objects:
+      - aws-health-api-polling-ae1b9c80-aae2-44f2-9a3c-9c282db54ee3.zip
+    DependsOn:
+    - LambdaExeRole
+    - AWSHealthApiDataHostingBucket
+  LambdaExeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: HealthPollingLambdaExecutionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/AWSHealthFullAccess
+      - arn:aws:iam::aws:policy/AmazonS3FullAccess
+      - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+  awshealthapipolling:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: HealthAPIPollingLambdaFunction
+      Description: This Lambda function is the main function to poll health data at organizations level
+      Environment:
+        Variables:
+          s3_bucket_name:
+            Ref: S3BucketNameforHealthData
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri:
+        Bucket: 
+          Ref: S3BucketNameforHealthData
+        Key: aws-health-api-polling-ae1b9c80-aae2-44f2-9a3c-9c282db54ee3.zip
+      Description: lambda function
+      MemorySize: 256
+      Timeout: 900
+      Role: !GetAtt 'LambdaExeRole.Arn'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+    DependsOn:
+    - LambdaExeRole
+    - AWSHealthApiDataHostingBucket
+    - CopyZips
+  CopyZipsFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: Copies objects from a source S3 bucket to a destination
+      Handler: index.handler
+      Runtime: python2.7
+      Role: !GetAtt 'LambdaExeRole.Arn'
+      Timeout: 240
+      Code:
+        ZipFile: |
+          import json
+          import logging
+          import threading
+          import boto3
+          import cfnresponse
+          def copy_objects(source_bucket, dest_bucket, prefix, objects):
+              s3 = boto3.client('s3')
+              for o in objects:
+                  key = prefix + o
+                  copy_source = {
+                      'Bucket': source_bucket,
+                      'Key': key
+                  }
+                  print('copy_source: %s' % copy_source)
+                  print('dest_bucket = %s'%dest_bucket)
+                  print('key = %s' %key)
+                  s3.copy_object(CopySource=copy_source, Bucket=dest_bucket,
+                        Key=key)
+          def delete_objects(bucket, prefix, objects):
+              s3 = boto3.client('s3')
+              objects = {'Objects': [{'Key': prefix + o} for o in objects]}
+              s3.delete_objects(Bucket=bucket, Delete=objects)
+          def timeout(event, context):
+              logging.error('Execution is about to time out, sending failure response to CloudFormation')
+              cfnresponse.send(event, context, cfnresponse.FAILED, {}, None)
+          def handler(event, context):
+              # make sure we send a failure to CloudFormation if the function
+              # is going to timeout
+              timer = threading.Timer((context.get_remaining_time_in_millis()
+                        / 1000.00) - 0.5, timeout, args=[event, context])
+              timer.start()
+              print('Received event: %s' % json.dumps(event))
+              status = cfnresponse.SUCCESS
+              try:
+                  source_bucket = event['ResourceProperties']['SourceBucket']
+                  dest_bucket = event['ResourceProperties']['DestBucket']
+                  prefix = event['ResourceProperties']['Prefix']
+                  objects = event['ResourceProperties']['Objects']
+                  if event['RequestType'] == 'Delete':
+                      delete_objects(dest_bucket, prefix, objects)
+                  else:
+                      copy_objects(source_bucket, dest_bucket, prefix, objects)
+              except Exception as e:
+                  logging.error('Exception: %s' % e, exc_info=True)
+                  status = cfnresponse.FAILED
+              finally:
+                  timer.cancel()
+                  cfnresponse.send(event, context, status, {}, None)
