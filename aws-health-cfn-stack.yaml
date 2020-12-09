@@ -19,7 +19,7 @@ Resources:
     Properties:
       ServiceToken: !GetAtt 'CopyZipsFunction.Arn'
       DestBucket: !Ref 'AWSHealthApiDataHostingBucket'
-      SourceBucket: 'my-public-bucket-2020'
+      SourceBucket: 'my-public-bucket-2021'
       Prefix: ''
       Objects:
       - aws-health-api-polling-ae1b9c80-aae2-44f2-9a3c-9c282db54ee3.zip
