@@ -70,6 +70,10 @@ Resources:
     - LambdaExeRole
     - AWSHealthApiDataHostingBucket
     - CopyZips
+  DeploymentCustomResource: 
+    Type: Custom::AppConfiguration 
+    Properties: 
+      ServiceToken: !GetAtt 'awshealthapipolling.Arn'
   CopyZipsFunction:
     Type: AWS::Lambda::Function
     Properties:
