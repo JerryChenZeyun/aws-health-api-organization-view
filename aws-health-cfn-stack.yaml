@@ -65,15 +65,11 @@ Resources:
         Schedule1:
           Type: Schedule
           Properties:
-            Schedule: rate(15 minutes)
+            Schedule: rate(10 minutes)
     DependsOn:
     - LambdaExeRole
     - AWSHealthApiDataHostingBucket
     - CopyZips
-  DeploymentCustomResource: 
-    Type: Custom::AppConfiguration 
-    Properties: 
-      ServiceToken: !GetAtt 'awshealthapipolling.Arn'
   CopyZipsFunction:
     Type: AWS::Lambda::Function
     Properties:
